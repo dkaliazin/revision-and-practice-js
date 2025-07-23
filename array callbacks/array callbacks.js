@@ -362,4 +362,84 @@ const names2 = ['Ivan', 'Maria', 'Anna'];
 const sayHi = ((array) => {
     return array.map((arrayElem) => `${arrayElem} привіт!`)
 })
-console.log(sayHi(names2))
+// console.log(sayHi(names2))
+// Перевірити чи всі студенти старші 18 років.
+const students = [
+  { name: 'Alex', age: 17 },
+  { name: 'Stas', age: 18 },
+  { name: 'Mike', age: 22 },
+  { name: 'Den', age: 20 },
+];
+// console.log(students.every((student) => student.age>18))
+// Зібрати в allTopics масив всіх предметів всіх курсів.
+// Виконати фільтрацію, залишивши в allTopics тільки унікальні елементи.
+
+const courses = [
+  {
+    name: "Basic HTML+CSS",
+    topics: ["VSCode", "HTML", "CSS", "GitHub", "GitHub Desktop"],
+  },
+  {
+    name: "Intermediate HTML+CSS",
+    topics: ["VSCode", "HTML", "CSS", "GitHub", "Git", "Terminal"],
+  },
+  {
+    name: "Basic JavaScript",
+    topics: ["VSCode","Type system","Loops","Function","Git","GitHub",],
+  },
+  {
+    name: "Intermediate JavaScript",
+    topics: ["VSCode","NPM","Bundlers","Transpiling","Git","Promises","AJAX","GitHub",],
+  },
+];
+const allTopics = (arrayOfObjs) => {
+  return arrayOfObjs
+    .flatMap((obj) => obj.topics)
+    .filter((elementOFArr, index, array) => array.indexOf(elementOFArr) === index)
+    
+}
+// console.log(allTopics(courses))
+// Напишіть функцію getTotalBoysYears() яка порахує загальний вік хлопців.
+// Напишіть функцію getGirlsPassports() яка поверне масив номерів паспортів дівчат.
+
+const friends = [
+  { passport: '03005988', name: 'Joseph Francis Tribbiani Jr', age: 32, sex: 'm' },
+  { passport: '03005989', name: 'Chandler Muriel Bing', age: 33, sex: 'm' },
+  { passport: '03005990', name: 'Ross Eustace Geller', age: 33, sex: 'm' },
+  { passport: '03005991', name: 'Rachel Karen Green', age: 31, sex: 'f' },
+  { passport: '03005992', name: 'Monica Geller', age: 31, sex: 'f' },
+  { passport: '03005993', name: 'Phoebe Buffay', age: 34, sex: 'f' }
+];
+const getTotalBoysYears = () => {
+  return friends
+    .filter((obj) => obj.sex === 'm')
+    .reduce((totalAge, obj)=>{return totalAge+obj.age},0)
+}
+// console.log(getTotalBoysYears())
+const getGirlsPassports = () => {
+  return friends
+    .filter(obj => obj.sex === 'f')
+    .map(obj => obj.passport)
+}
+// console.log('getGirlsPassports():', getGirlsPassports())
+// Маємо масив об'єктів, який представляє список замовлень:
+
+// Завдання:
+// 1. Перевірте, чи всі замовлення виконані.
+// 2. Поверніть список товарів з усіх виконаних замовлень.
+
+const orders = [
+  { id: 1, products: ['Milk', 'Bread'], status: 'completed' },
+  { id: 2, products: ['Eggs', 'Juice'], status: 'processing' },
+  { id: 3, products: ['Pasta', 'Spices'], status: 'completed' },
+];
+const ordersAreCompleted = () => {
+  return orders.every((obj)=> obj.status === 'completed')
+}
+const listOfCompleted = () => {
+  return orders
+    .filter((obj) => obj.status === 'completed')
+    .flatMap(obj => obj.products)
+}
+console.log('ordersAreCompleted():', ordersAreCompleted())
+console.log('listOfCompleted():', listOfCompleted())
