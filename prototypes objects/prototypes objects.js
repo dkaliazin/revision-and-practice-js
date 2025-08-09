@@ -28,3 +28,39 @@ class User{
 const jack = new User({name:'Jack', surname:'Simonenko',email:'jack@gmail.com'})
 // console.log('jack:', jack)
 // console.log('getEmail(jack):', jack.getEmail());
+// Об'єкт з функцією для підрахунку суми чисел.
+// Змініть у консоль результат виконання функції, якщо a = 3, b = 5.
+const obj = { num: 2 };
+function add(a, b) {
+  return this.num + a + b;
+}
+// console.log(add.call(obj, 3, 5));
+// // 45:00
+
+// Є два об'єкти, які описують деякі характеристики телефонів.
+// Потрібно викликати метод showInfo, щоб він логував інформацію про кожний телефон,
+// передаючи аргументом країну-виробник телефону.
+// "HUAWEI" – "China", "SAMSUNG" – "South Korea".
+
+const tel = {
+  regNumber: "AE8345FEDAS",
+  brand: "HUAWEI",
+  showInfo(country) {
+    // 
+    if (country.toLowerCase() === 'china') {
+      console.log(this.brand)
+    } else if (country.toLowerCase() === 'south korea') {
+      console.log('SAMSUNG')
+    } else {
+      console.log(`${country}.${this.regNumber}.${this.brand}`);
+    }
+  }
+}
+
+const tel_2 = {
+  regNumber: "A08518FEGHT",
+  brand: "SAMSUNG",
+}
+
+tel.showInfo('China');
+tel.showInfo.call(tel_2,'South Korea')
