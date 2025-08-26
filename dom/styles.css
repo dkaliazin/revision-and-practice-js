@@ -1,0 +1,10 @@
+.gallery {
+  display: flex;
+  max-width: 1000px;
+  gap: 20px;
+  list-style-type: none;
+}
+.item {
+  width: 100px;
+  height: 100px;
+}

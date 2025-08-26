@@ -370,6 +370,6 @@ class BankAccount{
     console.log(`Залишок на рахунку: ${this.balance} грн.`)
   }
 }const newBankAcc = new BankAccount("5", 222);
-newBankAcc.withdraw(222);
-newBankAcc.deposit(222);
-newBankAcc.checkBalance();
+// newBankAcc.withdraw(222);
+// newBankAcc.deposit(222);
+// newBankAcc.checkBalance();
