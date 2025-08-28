@@ -1,0 +1,32 @@
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  list-style-type: none;
+  margin: 0;
+  padding: 100px;
+}
+img {
+  width: 400px;
+  height: 300px;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 20px;
+}
+a {
+  text-decoration: none;
+}
+h2 {
+  margin: 0;
+  padding: 0;
+  max-width: 400px;
+  color: black;
+}
+li {
+  margin: 0;
+  padding: 0;
+  max-width: 400px;
+  border: 2px solid black;
+  align-items: center;
+  justify-content: center;
+}

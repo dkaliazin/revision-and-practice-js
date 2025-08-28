@@ -72,7 +72,7 @@ gallery.append(...arrayItems)
 //     то замість імені у спан має підставлятися рядок "Anonymous".
 const inputName = document.querySelector('#name-input');
 const outputName = document.querySelector('#name-output')
-inputName.addEventListener('keyup', event => {
+inputName.addEventListener('input', event => {
     outputName.textContent = inputName.value.trim();
     if (inputName.value.trim() === '') {
         outputName.textContent = 'Anonymous'
@@ -93,7 +93,7 @@ inputName.addEventListener('keyup', event => {
 // очисти значення полів форми методом reset.
 
 const loginForm= document.querySelector('.login-form');
-function handleButton(event) {
+function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
     const email = form.elements.email.value;
@@ -103,6 +103,6 @@ function handleButton(event) {
     } else {
         console.log(`email:${email} , password:${password}`)
     }
-
+    event.currentTarget.reset();
 }
-loginForm.addEventListener('submit', handleButton)
+loginForm.addEventListener('submit', handleSubmit)
