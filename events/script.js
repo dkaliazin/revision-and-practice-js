@@ -88,14 +88,23 @@ function onClickList(event) {
     if (event.target.nodeName !== 'IMG') {
         return;
     }
-    console.log(event.target)
+    // console.log(event.target)
   const largeImg = event.target.dataset.source;
   const alt = event.target.alt;
-  console.log(alt)
+  // console.log(alt)
     const instance = basicLightbox.create(`
             <img
             src ="${largeImg}"
             alt="${alt}"
             >`);
     instance.show()
+}
+// 1
+//  При натисканні на кнопку "SHOW ME", потрібно в консоль
+//      вивести значення, яке будемо вводити в інпут.
+const alertButton = document.querySelector('#alertButton')
+alertButton.addEventListener('click', buttonHandler);
+function buttonHandler (event){
+  const alertInput = document.querySelector('#alertInput');
+  console.log(alertInput.value);
 }
