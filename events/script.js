@@ -131,7 +131,7 @@ function handleButton(event) {
 //      в кожному елементі списку в два рази.
 const doubleBtn = document.querySelector('#double');
 const listItem = document.querySelectorAll('.listItem')
-console.log(listItem)
+// console.log(listItem)
 doubleBtn.addEventListener('click', handleDoubleBtn);
 function handleDoubleBtn(event) {
   listItem.forEach((item) => {
@@ -183,3 +183,123 @@ function handleDouble(event) {
 }
 // 5
 /* При кліку на кнопку "Filter" потрібно видалити з списку позначені елементи. */
+// const inputBox = document.querySelector('#checkbox2')
+// console.dir(inputBox)
+const checkboxForm = document.querySelector('.checkboxForm')
+checkboxForm.addEventListener('click', handleForm);
+function handleForm(event) {
+  if (event.target.nodeName !== 'BUTTON') {
+    return;
+  } else {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const allInputs = form.querySelectorAll('input[type="checkbox"]');
+    allInputs.forEach((input) => {
+      if (input.checked) {
+        input.closest('.checkboxWrapper').remove()
+      }
+    })
+  }
+}
+// 6
+// Наведено список людей. Зроби можливість фільтрації (пошуку) за ім'ям або за прізвищем.
+const contactsFilter = document.querySelector('.contactsFilter');
+const allContacts = document.querySelectorAll('.contact');
+const listContacts = document.querySelector('.contacts')
+contactsFilter.addEventListener('input', handleFilter);
+function handleFilter(event) {
+  const inputValue = event.target.value.toLowerCase();
+  const array = [...allContacts].filter((contact) => contact.textContent.toLowerCase().includes(inputValue));
+  listContacts.innerHTML = '';
+  listContacts.append(...array)
+}
+// 7
+const popularMovies = [
+  {
+    title: "Avengers: Endgame",
+    year: 2019,
+    rating: 8.4,
+    country: "USA",
+  },
+  {
+    title: "Joker",
+    year: 2019,
+    rating: 8.5,
+    country: "USA",
+  },
+  {
+    title: "Spider-Man: Into the Spider-Verse",
+    year: 2018,
+    rating: 8.4,
+    country: "USA",
+  },
+  {
+    title: "Parasite",
+    year: 2019,
+    rating: 8.6,
+    country: "South Korea",
+  },
+  {
+    title: "Interstellar",
+    year: 2014,
+    rating: 8.6,
+    country: "USA",
+  },
+  {
+    title: "La La Land",
+    year: 2016,
+    rating: 8.0,
+    country: "USA",
+  },
+];
+// Є масив об'єктів з популярними фільмами і форма пошуку за назвою фільму.
+// 1. Зроби так, щоб при першому завантаженні сторінки користувач
+//    бачив весь перелік фільмів (назву, рік виробництва, рейтинг і країну виробник).
+//    Для рендеру розмітки використовуємо шаблонні рядки та метод insertAdjacentHTML.
+// 2. Реалізуй пошук потрібного фільму за назвою. При кліку на кнопку "Пошук" у
+//    списку залишаються тільки ті фільми, котрі мають повне або часткове співпадіння
+//    за назвою фільму.
+// const htmlMovies = popularMovies.reduce((html, movie) => {
+//   html += `
+//   <li>
+//     <h2>${movie.title}</h2>
+//     <p>Year:${movie.year}</p>
+//     <p>Rating:${movie.rating}</p>
+//     <p>Country:${movie.country}</p>
+//   </li>`;
+//   return html;
+// }, '')
+const htmlMoviesArray = popularMovies.map((movie) => {
+  return `
+  <li>
+    <h2>${movie.title}</h2>
+    <p>Year:${movie.year}</p>
+    <p>Rating:${movie.rating}</p>
+    <p>Country:${movie.country}</p>
+  </li>`;
+});
+const searchFilmForm = document.querySelector('#searchForm');
+const movieList = document.createElement('ul');
+movieList.insertAdjacentHTML('beforeend', htmlMoviesArray.join(''));
+document.querySelector('body').append(movieList);
+// listener
+searchFilmForm.addEventListener('submit', handleSearchSubmit);
+// function for listener
+function handleSearchSubmit(event) {
+  event.preventDefault();
+  const inputValue = event.currentTarget.elements.searchInput.value.toLowerCase();
+  const filterByValue = popularMovies.filter((movie) => {
+    return movie.title.toLocaleLowerCase().includes(inputValue);
+  })
+  movieList.innerHTML = '';
+  const htmlMoviesArray = filterByValue.map((movie) => {
+    return `
+  <li>
+    <h2>${movie.title}</h2>
+    <p>Year:${movie.year}</p>
+    <p>Rating:${movie.rating}</p>
+    <p>Country:${movie.country}</p>
+  </li>`;
+  });
+  movieList.insertAdjacentHTML('beforeend', htmlMoviesArray.join(''));
+}
