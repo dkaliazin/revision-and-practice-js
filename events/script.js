@@ -108,3 +108,78 @@ function buttonHandler (event){
   const alertInput = document.querySelector('#alertInput');
   console.log(alertInput.value);
 }
+// 2
+// При натисканні на кнопку "Приховати" потрібно введені користувачем
+// символи в інпуті відображати у вигляді крапок замість звичайного
+// тексту, а також змінити назву кнопки на "Показати".
+// При повторному натисканні знову будемо відображати символи,
+// а назва кнопки зміниться на "Приховати".
+const pswBtn = document.querySelector('#passwordButton');
+const pswInput = document.querySelector('#passwordInput');
+pswBtn.addEventListener('click', handleButton);
+function handleButton(event) {
+  if (pswInput.type === 'text') {
+    pswBtn.textContent = 'Hide'
+    pswInput.type = 'password';
+  } else if (pswInput.type === 'password') {
+    pswBtn.textContent = 'Show'
+    pswInput.type = 'text';
+  }
+}
+// 3
+// При кліку на кнопку "Подвоїти" збільшувати значення 
+//      в кожному елементі списку в два рази.
+const doubleBtn = document.querySelector('#double');
+const listItem = document.querySelectorAll('.listItem')
+console.log(listItem)
+doubleBtn.addEventListener('click', handleDoubleBtn);
+function handleDoubleBtn(event) {
+  listItem.forEach((item) => {
+    let typeToInt = parseInt(item.textContent)
+    typeToInt *= 2;
+    item.textContent = typeToInt;
+  })
+}
+// 4
+// <!-- Кнопка "Зменшити" повинна зменшувати квадрат на 10 пікселів. -->
+// <!-- Кнопка "Збільшити" повинна збільшувати квадрат на 10 пікселів. -->
+const box = document.querySelector('#box');
+box.style.backgroundColor = 'red';
+const descreaseBox = document.querySelector('#decrease-box');
+const increaseBox = document.querySelector('#increase-box');
+const doubleBox = document.querySelector('#double-box');
+descreaseBox.addEventListener('click', handleDeacrease);
+  let setHeight = 0;
+  let setWidth = 0;
+function handleDeacrease(event) {
+  if (setHeight < 10 && setWidth < 10) { 
+    return;
+  } else {
+    setHeight -= 10;
+    setWidth -= 10;
+  }
+  box.style.width = setWidth + 'px';
+  box.style.height = setHeight + 'px';
+}
+increaseBox.addEventListener('click', handleIncrease);
+function handleIncrease(event) {
+    setHeight += 10;
+  setWidth += 10;
+  if (box.offsetHeight === 0 || box.offsetWidth === 0) {
+    box.style.width = `10px`;
+  box.style.height = `10px`;
+  } else {
+    box.style.width = `${box.offsetWidth +10}px`;
+  box.style.height = `${box.offsetHeight +10}px`;
+  }
+  
+}
+doubleBox.addEventListener('click', handleDouble);
+function handleDouble(event) {
+  setHeight *= 2;
+  setWidth *= 2;
+  box.style.width = setWidth + 'px';
+  box.style.height = setHeight + 'px';
+}
+// 5
+/* При кліку на кнопку "Filter" потрібно видалити з списку позначені елементи. */
